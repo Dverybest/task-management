@@ -2,13 +2,16 @@ import styled from "styled-components";
 import { Navbar } from "../components";
 import { Outlet } from "react-router-dom";
 import { FC } from "react";
+import { TaskContextProvider } from "../context";
 
 export const Root: FC = () => {
   return (
-    <Container>
-      <Navbar />
-      <Outlet />
-    </Container>
+    <TaskContextProvider>
+      <Container>
+        <Navbar />
+        <Outlet />
+      </Container>
+    </TaskContextProvider>
   );
 };
 
