@@ -2,14 +2,15 @@ import { FC } from "react";
 import styled from "styled-components";
 import { ITask } from "../interfaces";
 
-export const Task: FC<ITask> = ({ title, description, status,id }) => {
+type ITaskProp = ITask & { onEdit: () => void };
+export const Task: FC<ITaskProp> = ({ title, description, status, onEdit }) => {
   return (
     <Container>
       <Title>{title}</Title>
       <Description>{description}</Description>
       <StatusContainer>
         <Status>{status}</Status>
-        <Icon className={"fi fi-bs-edit"} />
+        <Icon className={"fi fi-bs-edit"} onClick={onEdit} />
       </StatusContainer>
     </Container>
   );
@@ -22,6 +23,7 @@ const Container = styled.article`
   height: 200px;
   border-radius: 8px;
   padding: 16px;
+  color: ${({ theme }) => theme.color.black};
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0px 2px 4px #888888;
 `;

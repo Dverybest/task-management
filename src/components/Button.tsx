@@ -31,7 +31,11 @@ const ButtonStyle = styled.button<{ isOutline?: boolean }>`
           color: ${({ theme }) => theme.color.white};
           background-color: ${({ theme }) => theme.color.primary};
         `
-      : css``}
+      : css`
+          background-color: transparent;
+          border: 1px solid ${({ theme }) => theme.color.white};
+          border-radius: 4px;
+        `}
 `;
 
 const Icon = styled.i``;

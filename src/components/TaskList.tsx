@@ -2,11 +2,13 @@ import { FC } from "react";
 import styled from "styled-components";
 import { Task } from "./Task";
 import { ITask } from "../interfaces";
+import { useNavigate } from "react-router-dom";
 
 type ITaskList = {
   tasks: ITask[];
 };
 export const TaskList: FC<ITaskList> = ({ tasks }) => {
+  const navigate = useNavigate();
   return (
     <Conatainer>
       <DisplaySectionTitle>Tasks</DisplaySectionTitle>
@@ -16,6 +18,9 @@ export const TaskList: FC<ITaskList> = ({ tasks }) => {
         )}
         {tasks.map((task) => (
           <Task
+            onEdit={() => {
+              navigate(`/edit/${task.id}`, { state: task });
+            }}
             key={task.id}
             id={task.id}
             title={task.title}
@@ -36,14 +41,15 @@ const Conatainer = styled.section`
   overflow-y: auto;
   border-radius: 16px 16px 0px 0px;
   background-color: ${({ theme }) => theme.color.primary};
-  @media (max-width:800px) {
-   margin-top: 0;
+  @media (max-width: 800px) {
+    margin-top: 0;
   }
 `;
 const EmptyText = styled.p`
   align-self: center;
   font-size: 20px;
   text-align: center;
+  color: ${({ theme }) => theme.color.black};
   flex: 1;
 `;
 const DisplaySectionTitle = styled.h3`
