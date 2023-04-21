@@ -30,9 +30,10 @@ export const TaskList: FC<ITaskList> = ({ tasks }) => {
 
 const Conatainer = styled.section`
   display: flex;
-  flex: 2;
+  flex: 1;
   margin-top: 50px;
   flex-direction: column;
+  overflow-y: auto;
   border-radius: 16px 16px 0px 0px;
   background-color: ${({ theme }) => theme.color.primary};
   @media (max-width:800px) {
@@ -42,6 +43,8 @@ const Conatainer = styled.section`
 const EmptyText = styled.p`
   align-self: center;
   font-size: 20px;
+  text-align: center;
+  flex: 1;
 `;
 const DisplaySectionTitle = styled.h3`
   margin: 25px;
@@ -49,7 +52,6 @@ const DisplaySectionTitle = styled.h3`
 `;
 const InnerConatainer = styled.section`
   display: flex;
-  justify-content: center;
   flex: 1;
   padding: 20px;
   column-gap: 16px;

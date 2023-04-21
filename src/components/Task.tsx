@@ -18,7 +18,8 @@ export const Task: FC<ITask> = ({ title, description, status,id }) => {
 const Container = styled.article`
   display: flex;
   flex-direction: column;
-  width: calc(48% - 32px);
+  width: calc(47% - 32px);
+  height: 200px;
   border-radius: 8px;
   padding: 16px;
   background-color: ${({ theme }) => theme.color.white};

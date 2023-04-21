@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import styled, { css } from "styled-components";
 
 type IButton = {
   text: string;
   isOutline?: boolean;
   icon?: string;
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 export const Button: FC<IButton> = ({ text, icon, isOutline, ...rest }) => {
   return (
