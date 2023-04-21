@@ -1,5 +1,5 @@
 import { FC, createContext, useState } from "react";
-import { ITask } from "../interfaces";
+import { ITask, Status } from "../interfaces";
 
 type ITaskContext = {
   tasks: ITask[];
@@ -23,14 +23,14 @@ export const TaskContextProvider: FC<ITaskContextProvider> = ({ children }) => {
     tasks.push(task);
   };
   const handleEditTask = (task: ITask) => {
-    const taskIndex = tasks.findIndex((item) => item.id === task.id);
-    if (taskIndex !== -1) {
-      setTasks((prev) => {
-        const taskArr = [...prev];
-        taskArr[taskIndex] = task;
-        return taskArr;
-      });
-    }
+    const taskArr = tasks.reduce((acc, item) => {
+      if (item.id === task.id) {
+        if (task.status === Status.DEPLOYED) return acc;
+        return [...acc, task];
+      }
+      return [...acc, item];
+    }, [] as ITask[]);
+    setTasks(taskArr);
   };
   return (
     <TaskContext.Provider value={{ tasks, handleAddTask, handleEditTask }}>
