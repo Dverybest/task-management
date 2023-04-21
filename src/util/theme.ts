@@ -1,15 +1,10 @@
 export const theme = {
   color: {
-    Blue: {
-      9: "#043FA7",
-      8: "#0446B9",
-      7: "#054ECE",
-      6: "#0556E5",
-      5: "#0660FE",
-      4: "#076AFF",
-      3: "#0774FF",
-      2: "#0880FF",
-      1: "#098DFF",
-    } as const,
+    primary: "#1775b9",
+    lightBlue: "#a2ceed",
+    white: "#FFFFFF",
+    black: "#2F2F2F",
+    grey: "#dcdcdc",
+    lightGrey: "#e9eaeb",
   } as const,
-} as const;
+};
