@@ -12,7 +12,7 @@ export const TaskList: FC<ITaskList> = ({ tasks }) => {
   return (
     <Conatainer>
       <DisplaySectionTitle>Tasks</DisplaySectionTitle>
-      <InnerConatainer>
+      <InnerConatainer data-testid={"taskListContainer"}>
         {tasks.length === 0 && (
           <EmptyText>You have nothing to do. Go get some sleep.</EmptyText>
         )}

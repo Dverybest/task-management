@@ -5,12 +5,16 @@ import { ITask } from "../interfaces";
 type ITaskProp = ITask & { onEdit: () => void };
 export const Task: FC<ITaskProp> = ({ title, description, status, onEdit }) => {
   return (
-    <Container>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
+    <Container className="task">
+      <Title id={"task-title"}>{title}</Title>
+      <Description id={"task-description"}>{description}</Description>
       <StatusContainer>
-        <Status>{status}</Status>
-        <Icon className={"fi fi-bs-edit"} onClick={onEdit} />
+        <Status id={"task-status"}>{status}</Status>
+        <Icon
+          data-testid={"editIcon"}
+          className={"fi fi-bs-edit"}
+          onClick={onEdit}
+        />
       </StatusContainer>
     </Container>
   );

@@ -9,7 +9,7 @@ type IButton = {
 };
 export const Button: FC<IButton> = ({ text, icon, isOutline, ...rest }) => {
   return (
-    <ButtonStyle isOutline={isOutline} {...rest}>
+    <ButtonStyle  isOutline={isOutline} {...rest}>
       {icon && <Icon className={icon} />} {text}
     </ButtonStyle>
   );
