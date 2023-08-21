@@ -1,9 +1,17 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { ITask } from "../interfaces";
+import { Button } from ".";
 
-type ITaskProp = ITask & { onEdit: () => void };
-export const Task: FC<ITaskProp> = ({ title, description, status, onEdit }) => {
+type ITaskProp = ITask & { onEdit: () => void; onDeleteClick: () => void };
+
+export const Task: FC<ITaskProp> = ({
+  title,
+  description,
+  status,
+  onEdit,
+  onDeleteClick,
+}) => {
   return (
     <Container className="task">
       <Title id={"task-title"}>{title}</Title>
@@ -15,6 +23,7 @@ export const Task: FC<ITaskProp> = ({ title, description, status, onEdit }) => {
           className={"fi fi-bs-edit"}
           onClick={onEdit}
         />
+        <DeleteButton text="Delete" onClick={onDeleteClick} />
       </StatusContainer>
     </Container>
   );
@@ -63,4 +72,7 @@ const Icon = styled.i`
   ::before {
     font-size: 20px;
   }
+`;
+const DeleteButton = styled(Button)`
+  background-color: red;
 `;

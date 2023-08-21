@@ -1,14 +1,16 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import styled from "styled-components";
 import { Task } from "./Task";
 import { ITask } from "../interfaces";
 import { useNavigate } from "react-router-dom";
+import { TaskContext } from "../context";
 
 type ITaskList = {
   tasks: ITask[];
 };
 export const TaskList: FC<ITaskList> = ({ tasks }) => {
   const navigate = useNavigate();
+  const { handleDeleteTask } = useContext(TaskContext);
   return (
     <Conatainer>
       <DisplaySectionTitle>Tasks</DisplaySectionTitle>
@@ -21,6 +23,7 @@ export const TaskList: FC<ITaskList> = ({ tasks }) => {
             onEdit={() => {
               navigate(`/edit/${task.id}`, { state: task });
             }}
+            onDeleteClick={() => handleDeleteTask(task.id)}
             key={task.id}
             id={task.id}
             title={task.title}

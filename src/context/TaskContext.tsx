@@ -5,12 +5,14 @@ type ITaskContext = {
   tasks: ITask[];
   handleEditTask: (task: ITask) => void;
   handleAddTask: (task: ITask) => void;
+  handleDeleteTask: (id: string) => void;
 };
 
 export const TaskContext = createContext<ITaskContext>({
   tasks: [],
   handleAddTask: () => {},
   handleEditTask: () => {},
+  handleDeleteTask: () => {},
 });
 
 type ITaskContextProvider = {
@@ -23,17 +25,24 @@ export const TaskContextProvider: FC<ITaskContextProvider> = ({ children }) => {
     tasks.push(task);
   };
   const handleEditTask = (task: ITask) => {
-    const taskArr = tasks.reduce((acc, item) => {
+  
+    const taskArr = tasks.reduce<ITask[]>((acc, item) => {
       if (item.id === task.id) {
         if (task.status === Status.DEPLOYED) return acc;
         return [...acc, task];
       }
       return [...acc, item];
-    }, [] as ITask[]);
+    }, []);
+    setTasks(taskArr);
+  };
+  const handleDeleteTask = (id: string) => {
+    const taskArr = tasks.filter((task) => task.id !== id);
     setTasks(taskArr);
   };
   return (
-    <TaskContext.Provider value={{ tasks, handleAddTask, handleEditTask }}>
+    <TaskContext.Provider
+      value={{ tasks, handleAddTask, handleEditTask, handleDeleteTask }}
+    >
       {children}
     </TaskContext.Provider>
   );
